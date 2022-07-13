@@ -1,0 +1,19 @@
+<nav>
+  <ul>
+    <li>
+      <button [disabled]="currentPageNumber === 0" type="button" (click)="goToPage(0)">First</button>
+    </li>
+    <li>
+      <button [disabled]="currentPageNumber === 0" type="button" (click)="goToPage(currentPageNumber - 1)">Back</button>
+    </li>
+    <li *ngFor="let item of pageNumbers; let index=index">
+      <button [ngClass]="{ 'active-page': currentPageNumber === item }" type="button" (click)="goToPage(index)">{{ index + 1 }}</button>
+    </li>
+    <li>
+      <button type="button" [disabled]="currentPageNumber === pageNumbers[pageNumbers.length - 1]" (click)="goToPage(currentPageNumber + 1)">Next</button>
+    </li>
+    <li>
+      <button type="button" [disabled]="currentPageNumber === pageNumbers[pageNumbers.length - 1]" (click)="goToPage(pageNumbers[pageNumbers.length - 1])">Last</button>
+    </li>
+  </ul>
+</nav>

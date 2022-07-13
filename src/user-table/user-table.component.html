@@ -1,0 +1,70 @@
+<ng-container *ngIf="status === 'loaded'; then loadedTemplate"></ng-container>
+<ng-container *ngIf="status === 'loading'; then loadingTemplate"></ng-container>
+<ng-container *ngIf="status === 'error'; then errorTemplate"></ng-container>
+
+<ng-template #loadingTemplate>
+  Loading...
+</ng-template>
+
+<ng-template #errorTemplate>
+  Error occurred...
+</ng-template>
+
+<ng-template #loadedTemplate>
+  <table>
+
+    <tr>
+      <th>
+        <ng-container *ngTemplateOutlet="selectAllcheckboxTemplate; context: { isSelectAll: true }"></ng-container>
+      </th>
+      <th><ng-container *ngTemplateOutlet="columnHeaderTemplate; context: { $implicit: 'Name'}"></ng-container></th>
+      <th><ng-container *ngTemplateOutlet="columnHeaderTemplate; context: { $implicit: 'Email'}"></ng-container></th>
+      <th><ng-container *ngTemplateOutlet="columnHeaderTemplate; context: { $implicit: 'Role'}"></ng-container></th>
+      <th><ng-container *ngTemplateOutlet="columnHeaderTemplate; context: { $implicit: 'Actions'}"></ng-container></th>
+    </tr>
+
+    <tr *ngFor="let dataItem of dataSet; trackBy: trackByFn; let index=index">
+      <td>
+        <ng-container *ngTemplateOutlet="checkboxTemplate; context: { $implicit: dataItem }"></ng-container>
+      </td>
+      <td>
+        <ng-container *ngTemplateOutlet="cellTemplate; context: { key: 'name', dataItem,  isEditMode: dataItem.isEdit}"></ng-container>
+      </td>
+      <td>
+        <ng-container *ngTemplateOutlet="cellTemplate; context: { key: 'email', dataItem, isEditMode: dataItem.isEdit }"></ng-container>
+      </td>
+      <td>
+        <ng-container *ngTemplateOutlet="cellTemplate; context: {  key: 'role', dataItem, isEditMode: dataItem.isEdit }"></ng-container>
+      </td>
+      <td>
+        <ng-container *ngTemplateOutlet="actionTemplate; context: { dataItem }"></ng-container>
+      </td>
+    </tr>
+
+  </table>
+</ng-template>
+
+<ng-template #columnHeaderTemplate let-headerText>
+  <div>
+    <strong>{{ headerText }}</strong>
+  </div>
+</ng-template>
+
+<ng-template #cellTemplate let-key="key" let-isEditMode="isEditMode" let-dataItem="dataItem">
+  <div *ngIf="!isEditMode">{{ dataItem[key] }}</div>
+  <input *ngIf="isEditMode" type="text" [ngModel]="dataItem[key]" (ngModelChange)="changeData($event, dataItem, key)">
+</ng-template>
+
+<ng-template #selectAllcheckboxTemplate>
+  <input type="checkbox" [ngModel]="isAllSelected" (ngModelChange)="selectAll($event)" />
+</ng-template>
+
+<ng-template #checkboxTemplate let-dataItem>
+  <input type="checkbox" [(ngModel)]="dataItem.isSelected" (ngModelChange)="selectionChange.emit(dataSet)" />
+</ng-template>
+
+<ng-template #actionTemplate let-dataItem="dataItem">
+  <button type="button" (click)="editItem(dataItem)">Edit</button>
+  <button type="button" (click)="deleteItem(dataItem.id)">Delete</button>
+  <button type="button" (click)="selectionChange.emit(dataSet); removeEdit(dataItem)">Save</button>
+</ng-template>

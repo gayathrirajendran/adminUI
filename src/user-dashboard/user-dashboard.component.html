@@ -1,0 +1,8 @@
+<app-user-table [dataSet]="dataSet" [status]="status" (deleteChange)="deleteItem($event)">
+</app-user-table>
+
+
+
+<app-pagination [totalRecordCount]="userData.length" [pageSize]="this.paginationSize" (goToPageEvent)="paginate($event)"></app-pagination>
+
+
