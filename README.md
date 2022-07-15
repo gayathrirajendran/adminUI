@@ -1,6 +1,6 @@
 # AdminUserManagement
 
-Dashboard to see list of users with pagination. Inline edit, single delete and multi select and delete are possible. At all points of time app-user-dashboard userData has the modified master data.
+Dashboard to see list of users with pagination. Inline edit, single delete and multi select and delete are possible. At all points of time app-user-dashboard component's userData has the modified master data.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
