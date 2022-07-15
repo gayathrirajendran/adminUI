@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { UserData } from 'src/user-models';
+import { UserData } from '../user-models';
 
 @Component({
   selector: 'app-user-table',

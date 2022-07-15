@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserDashboardComponent } from './user-dashboard.component';
 import { RouterModule } from '@angular/router';
-import { UserTableModule } from 'src/user-table/user-table.module';
+import { UserTableModule } from '../user-table/user-table.module';
 import { HttpClientModule } from '@angular/common/http';
-import { PaginationModule } from 'src/pagination/pagination.module';
-import { SearchModule } from 'src/search/search.module';
+import { PaginationModule } from '../pagination/pagination.module';
+import { SearchModule } from '../search/search.module';
 
 
 

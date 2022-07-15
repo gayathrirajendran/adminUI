@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SearchResult, UserData } from 'src/user-models';
+import { SearchResult, UserData } from '../../user-models';
 import { HttpClient } from '@angular/common/http'
 import { map, Observable } from 'rxjs';
 

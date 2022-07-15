@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { delay } from 'rxjs/operators';
-import { UserDataService, UserSearchService } from 'src/user-services';
 
 @Component({
   selector: 'app-search',

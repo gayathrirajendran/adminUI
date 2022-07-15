@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { concatMap, map, Observable } from 'rxjs';
-import { SearchResult, UserData } from 'src/user-models';
+import { SearchResult, UserData } from '../../user-models';
 import { UserDataService } from '../user-data/user-data.service';
 
 @Injectable()

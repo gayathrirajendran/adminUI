@@ -2,8 +2,8 @@ import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime, delay, takeUntil } from 'rxjs/operators';
-import { UserData } from 'src/user-models';
-import { UserDataService, UserSearchService } from 'src/user-services';
+import { UserData } from '../user-models';
+import { UserDataService, UserSearchService } from '../user-services';
 
 /**
  * Dashboard to see list of users with pagination. Inline edit, single delete and multi select and delete are possible. At all points of time userData has the modified master data.
