@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { UserData } from 'src/user-models';
+import { SearchResult, UserData } from 'src/user-models';
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable()
 export class UserDataService {
@@ -25,4 +25,11 @@ export class UserDataService {
       isEdit: false
     }));
   }
+
+  getUserData(searchStr?: string): Observable<UserData[]> {
+    return this.getData().pipe(
+      map((res) => this.transform(res))
+    );
+  }
+
 }

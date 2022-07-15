@@ -1,8 +1,12 @@
-<app-user-table [dataSet]="dataSet" [status]="status" (deleteChange)="deleteItem($event)">
+<app-search (searchResultSelect)="searchRecords($event)"></app-search>
+
+<app-user-table [dataSet]="dataSet" [status]="status" (deleteChange)="deleteItem($event)"  [isAllSelected]="isAllSelected" (isAllSelectedChange)="isAllSelected = $event" (selectionChange)="trackDelete()" (refreshData)="ngOnInit()">
 </app-user-table>
 
+<div class="flex-display">
+  <div class="flex-1">
+    <button type="button" class="btn" [disabled]="!deleteCount" title="Delete Selected" [attr.aria-label]="'Delete Selected'" (click)="deleteRecords()">Delete Selected ({{ deleteCount }})</button>
+  </div>
 
-
-<app-pagination [totalRecordCount]="userData.length" [pageSize]="this.paginationSize" (goToPageEvent)="paginate($event)"></app-pagination>
-
-
+  <app-pagination *ngIf="status === 'loaded'" class="flex-3" [totalRecordCount]="userData.length" [pageSize]="this.paginationSize" (goToPageEvent)="paginate($event)"></app-pagination>
+</div>

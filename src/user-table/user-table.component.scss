@@ -1,0 +1,30 @@
+table {
+  width: 100%;
+  border-collapse:collapse;
+  th {
+    text-align: left;
+  }
+  tr {
+    line-height: 37px;
+    border-bottom: 1px solid #ccc;
+  }
+}
+
+.btn {
+  height: 30px;
+  border-radius: 15px;
+  border: none;
+  padding: 0 10px;
+  background-color: #e9ecef;
+  color: #007acc;
+}
+
+.data-placeholder {
+  margin: 0 0 20px 0;
+}
+
+.block-center {
+  margin: 30px auto;
+  text-align: center;
+  vertical-align: middle;
+}

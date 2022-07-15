@@ -15,6 +15,14 @@ export class PaginationComponent implements OnInit, OnChanges {
   public currentPageNumber: number = 0;
   public pageNumbers: Array<number> = [];
 
+  public localeStrings = {
+    first: 'First',
+    back: 'Back',
+    goToPage: 'Go to {{ pageNumber }}',
+    next: 'Next',
+    last: 'Last'
+  };
+
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -1,0 +1,24 @@
+.flex-display {
+  display: flex;
+}
+.flex-1 {
+  flex: 1;
+  .btn {
+    height: 100%;
+    border-radius: 15px;
+    border: none;
+    padding: 0 10px;
+  }
+  .btn:not([disabled]) {
+    background: deeppink;
+    color: white
+  }
+
+}
+.flex-3 {
+  flex: 2;
+}
+app-pagination {
+  display: inline-block;
+  justify-content: center;
+}

@@ -1,19 +1,19 @@
 <nav>
   <ul>
     <li>
-      <button [disabled]="currentPageNumber === 0" type="button" (click)="goToPage(0)">First</button>
+      <button [disabled]="currentPageNumber === 0" type="button" [title]="localeStrings.first" [attr.aria-label]="localeStrings.first" (click)="goToPage(0)">&lt;&lt;</button>
     </li>
     <li>
-      <button [disabled]="currentPageNumber === 0" type="button" (click)="goToPage(currentPageNumber - 1)">Back</button>
+      <button [disabled]="currentPageNumber === 0" type="button" [title]="localeStrings.back" [attr.aria-label]="localeStrings.back" (click)="goToPage(currentPageNumber - 1)">&lt;</button>
     </li>
     <li *ngFor="let item of pageNumbers; let index=index">
-      <button [ngClass]="{ 'active-page': currentPageNumber === item }" type="button" (click)="goToPage(index)">{{ index + 1 }}</button>
+      <button [ngClass]="{ 'active-page': currentPageNumber === item }" type="button" [title]="localeStrings.goToPage | localize: 'pageNumber': index+1" [attr.aria-label]="localeStrings.goToPage | localize: 'pageNumber': index+1" (click)="goToPage(index)">{{ index + 1 }}</button>
     </li>
     <li>
-      <button type="button" [disabled]="currentPageNumber === pageNumbers[pageNumbers.length - 1]" (click)="goToPage(currentPageNumber + 1)">Next</button>
+      <button type="button" [disabled]="currentPageNumber === pageNumbers[pageNumbers.length - 1]" [title]="localeStrings.next" [attr.aria-label]="localeStrings.next" (click)="goToPage(currentPageNumber + 1)">&gt;</button>
     </li>
     <li>
-      <button type="button" [disabled]="currentPageNumber === pageNumbers[pageNumbers.length - 1]" (click)="goToPage(pageNumbers[pageNumbers.length - 1])">Last</button>
+      <button type="button" [disabled]="currentPageNumber === pageNumbers[pageNumbers.length - 1]" [title]="localeStrings.last" [attr.aria-label]="localeStrings.last" (click)="goToPage(pageNumbers[pageNumbers.length - 1])">&gt;&gt;</button>
     </li>
   </ul>
 </nav>

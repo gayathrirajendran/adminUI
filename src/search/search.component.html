@@ -1,0 +1,3 @@
+<div>
+  <input type="search" [disabled]="isDisabled" [(ngModel)] = "searchText" (ngModelChange)="searchResults($event)" [placeholder]="localeStrings.searchPlaceholder">
+</div>

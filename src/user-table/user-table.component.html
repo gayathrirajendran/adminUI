@@ -1,26 +1,46 @@
-<ng-container *ngIf="status === 'loaded'; then loadedTemplate"></ng-container>
-<ng-container *ngIf="status === 'loading'; then loadingTemplate"></ng-container>
-<ng-container *ngIf="status === 'error'; then errorTemplate"></ng-container>
+<div class="data-placeholder">
+  <ng-container *ngIf="status === 'loaded'; then loadedTemplate"></ng-container>
+  <ng-container *ngIf="status === 'loading'; then loadingTemplate"></ng-container>
+  <ng-container *ngIf="status === 'error'; then errorTemplate"></ng-container>
+</div>
 
 <ng-template #loadingTemplate>
-  Loading...
+  <div class="loading block-center">
+    Loading...
+  </div>
 </ng-template>
 
 <ng-template #errorTemplate>
-  Error occurred...
+  <div class="block-center">
+    Error occurred
+  </div>
+</ng-template>
+
+<ng-template #noRecordsTemplate>
+  <div class="block-center">
+    <div>No Records</div>
+    <button class="btn" type="button" (click)="refreshData.emit()">Refresh data</button>
+  </div>
 </ng-template>
 
 <ng-template #loadedTemplate>
-  <table>
-
+  <table *ngIf="dataSet.length; else noRecordsTemplate">
     <tr>
       <th>
         <ng-container *ngTemplateOutlet="selectAllcheckboxTemplate; context: { isSelectAll: true }"></ng-container>
       </th>
-      <th><ng-container *ngTemplateOutlet="columnHeaderTemplate; context: { $implicit: 'Name'}"></ng-container></th>
-      <th><ng-container *ngTemplateOutlet="columnHeaderTemplate; context: { $implicit: 'Email'}"></ng-container></th>
-      <th><ng-container *ngTemplateOutlet="columnHeaderTemplate; context: { $implicit: 'Role'}"></ng-container></th>
-      <th><ng-container *ngTemplateOutlet="columnHeaderTemplate; context: { $implicit: 'Actions'}"></ng-container></th>
+      <th>
+        <ng-container *ngTemplateOutlet="columnHeaderTemplate; context: { $implicit: 'Name'}"></ng-container>
+      </th>
+      <th>
+        <ng-container *ngTemplateOutlet="columnHeaderTemplate; context: { $implicit: 'Email'}"></ng-container>
+      </th>
+      <th>
+        <ng-container *ngTemplateOutlet="columnHeaderTemplate; context: { $implicit: 'Role'}"></ng-container>
+      </th>
+      <th>
+        <ng-container *ngTemplateOutlet="columnHeaderTemplate; context: { $implicit: 'Actions'}"></ng-container>
+      </th>
     </tr>
 
     <tr *ngFor="let dataItem of dataSet; trackBy: trackByFn; let index=index">
@@ -64,7 +84,7 @@
 </ng-template>
 
 <ng-template #actionTemplate let-dataItem="dataItem">
-  <button type="button" (click)="editItem(dataItem)">Edit</button>
-  <button type="button" (click)="deleteItem(dataItem.id)">Delete</button>
-  <button type="button" (click)="selectionChange.emit(dataSet); removeEdit(dataItem)">Save</button>
+  <button type="button" class="btn btn-info" (click)="editItem(dataItem)">Edit</button>
+  <button type="button" class="btn btn-warning" (click)="deleteItem(dataItem.id)">Delete</button>
+  <button type="button" class="btn btn-info" (click)="selectionChange.emit(dataSet); removeEdit(dataItem)">Save</button>
 </ng-template>

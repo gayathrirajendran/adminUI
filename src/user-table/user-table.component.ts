@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { UserData } from 'src/user-models';
 
 @Component({
@@ -6,22 +6,21 @@ import { UserData } from 'src/user-models';
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss']
 })
-export class UserTableComponent implements OnInit {
+export class UserTableComponent implements OnChanges {
 
   @Input() dataSet: UserData[] = [];
   @Input() status: 'loading' | 'loaded' | 'error' | 'initial' = 'initial';
-  public isAllSelected = false;
+  @Input() isAllSelected = false;
   @Output() selectionChange: EventEmitter<UserData[]> = new EventEmitter();
   @Output() deleteChange: EventEmitter<string> = new EventEmitter();
+  @Output() isAllSelectedChange: EventEmitter<boolean> = new EventEmitter();
+  @Output() refreshData: EventEmitter<void> = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
   ngOnChanges(simpleChanges: SimpleChanges): void {
-    if (simpleChanges.hasOwnProperty('dataSet') && this.dataSet.length) {
-
+    if (simpleChanges.hasOwnProperty('isAllSelected') && !this.isAllSelected) {
+      this.selectAll(false);
     }
   }
 
@@ -39,7 +38,10 @@ export class UserTableComponent implements OnInit {
   }
 
   selectAll(isSelected: boolean): void {
+    this.isAllSelected = isSelected;
+    this.isAllSelectedChange.emit(isSelected);
     this.dataSet.forEach((item) => item.isSelected = isSelected);
+    this.selectionChange.emit(this.dataSet)
   }
 
   changeData(changedValue: string, dataItem: UserData, key: string) {

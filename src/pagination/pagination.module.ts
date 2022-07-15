@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginationComponent } from './pagination.component';
+import { LocalizeModule } from 'src/localize/localize.module';
 
 
 
@@ -9,7 +10,8 @@ import { PaginationComponent } from './pagination.component';
     PaginationComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    LocalizeModule
   ],
   exports: [
     PaginationComponent

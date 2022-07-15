@@ -11,3 +11,9 @@ export interface UserData {
 export interface TableRow {
   currentAction: 'edit' | 'delete' | 'view';
 }
+
+export interface SearchResult {
+  id: string;
+  label: string;
+  resultIn?: string;
+}

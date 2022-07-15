@@ -5,12 +5,13 @@ import { RouterModule } from '@angular/router';
 import { UserTableModule } from 'src/user-table/user-table.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginationModule } from 'src/pagination/pagination.module';
+import { SearchModule } from 'src/search/search.module';
 
 
 
 @NgModule({
   declarations: [
-    UserDashboardComponent
+    UserDashboardComponent,
   ],
   imports: [
     RouterModule.forChild([{
@@ -20,7 +21,8 @@ import { PaginationModule } from 'src/pagination/pagination.module';
     CommonModule,
     UserTableModule,
     HttpClientModule,
-    PaginationModule
+    PaginationModule,
+    SearchModule
   ]
 })
 export class UserDashboardModule { }
